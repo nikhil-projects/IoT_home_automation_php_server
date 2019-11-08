@@ -23,7 +23,9 @@ $stmt = $mysqli->prepare("INSERT INTO `appliance`(`product_id`, `name`, `type`, 
 $stmt->bind_param("isisdii", $data['product_id'] , $data['name'] , $data['type'] , $data['status'] , $data['power_consumption'] , $is_active , $user_id);
 if(!$stmt->execute()){
     set_error_message('invalid input',400);
+    exit;
 }
+echo json_encode(array('message' => "User registered"));
 $stmt->close();
 $mysqli->close();
 ?>

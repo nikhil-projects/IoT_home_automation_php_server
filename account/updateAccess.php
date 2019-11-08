@@ -23,6 +23,7 @@ $stmt->bind_param("ii", $data['allow_access'], $user_id);
 if(!$stmt->execute()){
     set_error_message('invalid input',400);
 }
+echo json_encode(array('message'=>'Access Changed'));
 $stmt->close();
 $mysqli->close();
 ?>

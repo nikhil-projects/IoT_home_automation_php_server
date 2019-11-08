@@ -1,5 +1,5 @@
 <?php
-if($_SERVER['REQUEST_METHOD'] !== 'GET'){
+if($_SERVER['REQUEST_METHOD'] !== 'POST'){
     http_response_code(404);
     exit;
 }
@@ -29,7 +29,7 @@ while($schedule = $result->fetch_assoc()){
     array_push($output,$schedule);
 }
 
-echo json_encode($output);
+echo json_encode(array('schedules' => $output));
 
 $stmt->close();
 $mysqli->close();
