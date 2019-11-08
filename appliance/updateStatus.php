@@ -35,7 +35,7 @@ if(!$stmt->execute()){
     set_error_message('invalid input',400);
     exit;
 }
-
+echo json_encode(array('message' => "Updated"));
 // need to calculate the power consumption and update the table power_consumption
 
 $stmt->close();
