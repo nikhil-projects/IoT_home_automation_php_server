@@ -35,9 +35,12 @@ if(!$stmt->execute()){
     set_error_message('invalid input',400);
     exit;
 }
+exec("python ..\..\..\..\python\client.py " . "192.168.43.170" . " " . $data['status'] );
 echo json_encode(array('message' => "Updated"));
 // need to calculate the power consumption and update the table power_consumption
 
+// sending the status to the raspberry pi
+ 
 $stmt->close();
 $mysqli->close();
 ?>

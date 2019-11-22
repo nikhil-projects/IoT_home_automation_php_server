@@ -19,11 +19,12 @@ if ($mysqli->connect_errno) {
     set_error_message('failed to connect to the server',400);
     exit;
 }
-$stmt = $mysqli->prepare("UPDATE `appliance_schedule` SET `name`=?,`periodicity`=?,`start_time`=?,`end_time`=?,`status`=? WHERE id = ?");
-$stmt->bind_param("sssssi", $data['name'] , $data['periodicity'] , $data['start_time'] , $data['end_time'] , $data['status'] , $data['id']);
+$stmt = $mysqli->prepare("UPDATE `appliance_schedule` SET `name`=?,`periodicity`=?,`start_time`=?,`end_time`=?,`status`=? WHERE account_id = ? AND id = ?");
+$stmt->bind_param("sssssii", $data['name'] , $data['periodicity'] , $data['start_time'] , $data['end_time'] , $data['status'] , $user_id, $data['id']);
 if(!$stmt->execute()){
     set_error_message('invalid input',400);
 }
+echo json_encode(array('message' => "Schedule Updated"));
 $stmt->close();
 $mysqli->close();
 ?>
